@@ -44,6 +44,7 @@ const removeFromWatched = (id) => {
     dispatch({type: "REMOVE_FROM_WATCHED" , payload: id})
 }
 
+
     return (
         <GlobalContext.Provider value={{watchlist: state.watchlist , 
         watched : state.watched , 

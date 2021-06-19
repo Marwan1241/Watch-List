@@ -26,7 +26,7 @@ export const Add = () => {
                 <div className="add-content">
                     <div className="input-wrapper">
                         <input type="text" placeholder="Search for a movie"
-                         value={query} 
+                         value={query}
                          onChange={onChange} />
                     </div>
 

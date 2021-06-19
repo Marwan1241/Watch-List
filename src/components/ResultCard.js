@@ -24,6 +24,9 @@ export const ResultCard = ({movie}) => {
                         <h4 className="release-date">
                             {movie.release_date ? movie.release_date.substring(0 ,4) : "-"}
                             </h4>
+                        <h5 className="overview">
+                            {movie.overview ? movie.overview : "no overview available"}
+                        </h5>
                     </div>
 
                     <div className="controls">
