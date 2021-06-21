@@ -9,6 +9,9 @@ export const ResultCard = ({movie}) => {
 
     const watchlistDisabled = storedMovie ? true : storedMovieWatched ? true : false;
     const watchDisabled = storedMovieWatched ? true : false;
+
+    const trailer_api = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}`;
+    const trailer_key = trailer_api.key;
     return (
         <div className="result-card">
             <div className="poster-wrapper">
@@ -25,8 +28,11 @@ export const ResultCard = ({movie}) => {
                             {movie.release_date ? movie.release_date.substring(0 ,4) : "-"}
                             </h4>
                         <h5 className="overview">
-                            {movie.overview ? movie.overview : "no overview available"}
+                            {movie.overview ? movie.overview : "No overview available"}
                         </h5>
+                        <a className="trailer">
+                        {movie.id ?  <a href={`https://www.youtube.com/watch?v=BdJKm16Co6M`}>Trailer</a> : "No trailer available"}
+                        </a>
                     </div>
 
                     <div className="controls">

@@ -289,3 +289,7 @@ header .nav-Links li:last-child {
   font-size: 3rem;
   text-align: center;
 }
+
+.overview {
+  font-weight: 500;
+}
