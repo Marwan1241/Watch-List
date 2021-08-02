@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
 export const ResultCard = ({movie}) => {
@@ -10,7 +10,17 @@ export const ResultCard = ({movie}) => {
     const watchlistDisabled = storedMovie ? true : storedMovieWatched ? true : false;
     const watchDisabled = storedMovieWatched ? true : false;
 
-    const trailer_api = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}`;
+    const [trailer_link, setTrailer] = useState("")
+    const trailer_api = fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}`);
+    fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}`)
+        .then((res) => res.json())
+        .then((data) => {
+            if(!data.errors) {
+                setTrailer(data);
+            } else {
+                setTrailer([]);
+            }
+        })
     const trailer_key = trailer_api.key;
     return (
         <div className="result-card">
@@ -31,7 +41,7 @@ export const ResultCard = ({movie}) => {
                             {movie.overview ? movie.overview : "No overview available"}
                         </h5>
                         <a className="trailer">
-                        {movie.id ?  <a href={`https://www.youtube.com/watch?v=BdJKm16Co6M`}>Trailer</a> : "No trailer available"}
+                        {movie.id ?  <a href={`https://www.youtube.com/watch?v=${trailer_link}`}>Trailer</a> : "No trailer available"}
                         </a>
                     </div>
 
